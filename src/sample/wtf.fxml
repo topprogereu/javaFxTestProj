@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="frame" prefHeight="751.0" prefWidth="1011.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.diploma.Controller.MainController">
+    <children>
+        <TabPane layoutX="-25.0" layoutY="-60.0" prefHeight="556.0" prefWidth="925.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <tabs>
+                <Tab text="Генерация">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <SplitPane layoutX="14.0" layoutY="14.0" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                            <children>
+                                                <ComboBox fx:id="typeDistCB" layoutX="14.0" layoutY="42.0" prefHeight="26.0" prefWidth="173.0" promptText="...">
+                                                    <items>
+                                                        <FXCollections fx:factory="observableArrayList">
+                                                            <String fx:value="Нормальное" />
+                                                            <String fx:value="Равномерное" />
+                                                            <String fx:value="Экспоненциальное" />
+                                                            <String fx:value="Логнормальное" />
+                                                            <String fx:value="Вейбулла" />
+                                                            <String fx:value="Стьюдента" />
+                                                            <String fx:value="Лапласа" />
+                                                            <String fx:value="Экстремальное (max)" />
+                                                            <String fx:value="Экстремальное (min)" />
+                                                        </FXCollections>
+                                                    </items>
+                                                </ComboBox>
+                                                <Label layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="149.0" text="Тип распределения" />
+                                                <TextField fx:id="sizeTF" layoutX="123.0" layoutY="84.0" prefHeight="25.0" prefWidth="64.0" />
+                                                <TextField fx:id="param1TF" layoutX="149.0" layoutY="126.0" prefHeight="25.0" prefWidth="38.0" />
+                                                <TextField fx:id="param2TF" layoutX="149.0" layoutY="168.0" prefHeight="25.0" prefWidth="38.0" />
+                                                <Label layoutX="14.0" layoutY="88.0" prefHeight="18.0" prefWidth="77.0" text="Размер" />
+                                                <Label layoutX="14.0" layoutY="130.0" prefHeight="18.0" prefWidth="104.0" text="Параметр 1" />
+                                                <Label layoutX="14.0" layoutY="172.0" prefHeight="18.0" prefWidth="99.0" text="Параметр 2" />
+                                                <LineChart fx:id="lineChart" layoutX="191.0" layoutY="23.0" prefHeight="470.0" prefWidth="793.0">
+                                                    <xAxis>
+                                                        <NumberAxis side="BOTTOM" />
+                                                    </xAxis>
+                                                    <yAxis>
+                                                        <NumberAxis side="LEFT" />
+                                                    </yAxis>
+                                                </LineChart>
+                                                <Button fx:id="generateButton" disable="true" layoutX="14.0" layoutY="322.0" mnemonicParsing="false" onMouseClicked="#generateBtnClicked" prefHeight="35.0" prefWidth="173.0" text="Сгенерировать" />
+                                                <Button fx:id="saveButton" layoutX="14.0" layoutY="363.0" mnemonicParsing="false" onMouseClicked="#saveBtnClicked" prefHeight="35.0" prefWidth="173.0" text="Сохранить" />
+                                                <Label fx:id="meanLabelp1" layoutX="14.0" layoutY="232.0" prefHeight="18.0" prefWidth="173.0" />
+                                                <Label fx:id="medianaLabelp1" layoutX="14.0" layoutY="254.0" prefHeight="18.0" prefWidth="173.0" />
+                                                <Label fx:id="modaLabelp1" layoutX="14.0" layoutY="276.0" prefHeight="18.0" prefWidth="173.0" />
+                                            </children>
+                                        </AnchorPane>
+                                    </items>
+                                </SplitPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Критерий">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <Button layoutX="14.0" layoutY="33.0" mnemonicParsing="false" onMouseClicked="#loadDistBtnClicked" prefHeight="30.0" prefWidth="173.0" text="Загрузить выборку" />
+                                <Button layoutX="14.0" layoutY="248.0" mnemonicParsing="false" onMouseClicked="#loadDistBtn2Clicked" prefHeight="30.0" prefWidth="173.0" text="Загрузить выборку" />
+                                <Label fx:id="typeDistLabel1p2" layoutX="14.0" layoutY="64.0" prefHeight="18.0" prefWidth="170.0" text="Тип :" />
+                                <Label fx:id="sizeLabel1p2" layoutX="14.0" layoutY="81.0" prefHeight="18.0" prefWidth="173.0" text="Размер =" />
+                                <Label fx:id="param1Label1p2" layoutX="14.0" layoutY="98.0" prefHeight="18.0" prefWidth="169.0" text="Параметр 1 =" />
+                                <Label fx:id="param2Label1p2" layoutX="14.0" layoutY="115.0" prefHeight="18.0" prefWidth="171.0" text="Параметр 2 =" />
+                                <Label fx:id="typeDistLabel2p2" layoutX="14.0" layoutY="279.0" prefHeight="18.0" prefWidth="170.0" text="Тип :" />
+                                <Label fx:id="sizeLabel2p2" layoutX="14.0" layoutY="296.0" prefHeight="18.0" prefWidth="169.0" text="Размер =" />
+                                <Label fx:id="param1Label2p2" layoutX="14.0" layoutY="313.0" prefHeight="18.0" prefWidth="168.0" text="Параметр 1 =" />
+                                <Label fx:id="param2Label2p2" layoutX="14.0" layoutY="330.0" prefHeight="18.0" prefWidth="169.0" text="Параметр 2 =" />
+                                <LineChart fx:id="loadLineChart" layoutX="191.0" layoutY="23.0" prefHeight="421.0" prefWidth="793.0">
+                                    <xAxis>
+                                        <NumberAxis side="BOTTOM" />
+                                    </xAxis>
+                                    <yAxis>
+                                        <NumberAxis side="LEFT" />
+                                    </yAxis>
+                                </LineChart>
+                                <Label alignment="CENTER" layoutX="14.0" layoutY="9.0" prefHeight="18.0" prefWidth="175.0" text="Выборка 1" />
+                                <Label alignment="CENTER" layoutX="14.0" layoutY="224.0" prefHeight="18.0" prefWidth="175.0" text="Выборка 2" />
+                                <Label alignment="CENTER" layoutX="406.0" layoutY="444.0" prefHeight="38.0" prefWidth="276.0" text="Выберите критерий">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                                <Button fx:id="criterButton" layoutX="445.0" layoutY="530.0" mnemonicParsing="false" onMouseClicked="#criterBtnClicked" prefHeight="29.0" prefWidth="199.0" text="Применить" />
+                                <ComboBox fx:id="criterionCB" layoutX="420.0" layoutY="490.0" prefHeight="26.0" prefWidth="248.0" promptText="...">
+                                    <items>
+                                        <FXCollections fx:factory="observableArrayList">
+                                            <String fx:value="Знаковых рангов Вилкоксона" />
+                                            <String fx:value="Фридмана" />
+                                            <String fx:value="Суммы рангов Вилкоксона" />
+                                            <String fx:value="Ван-дер-Вардена" />
+                                            <String fx:value="Медианный" />
+                                            <String fx:value="Крускала-Уоллиса" />
+                                            <String fx:value="ФЙТГ" />
+                                        </FXCollections>
+                                    </items>
+                                </ComboBox>
+                                <Label fx:id="thresholdValueLabel" layoutX="420.0" layoutY="580.0" prefHeight="18.0" prefWidth="250.0" />
+                                <Label fx:id="statLabel" layoutX="420.0" layoutY="615.0" prefHeight="18.0" prefWidth="250.0" />
+                                <Label fx:id="samplesLabel" layoutX="420.0" layoutY="650.0" prefHeight="18.0" prefWidth="350.0" />
+                            </children></AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Эксперименты">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="701.0" prefWidth="1011.0">
+                            <children>
+                                <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="113.0" text="Выборка 1" />
+                                <Label alignment="CENTER" layoutX="14.0" layoutY="303.0" prefHeight="17.0" prefWidth="113.0" text="Выборка 2" />
+                                <ComboBox fx:id="typeDistCB1p4" layoutX="14.0" layoutY="37.0" prefHeight="26.0" prefWidth="186.0" promptText="Тип распределения">
+                                    <items>
+                                        <FXCollections fx:factory="observableArrayList">
+                                            <String fx:value="Нормальное" />
+                                            <String fx:value="Равномерное" />
+                                            <String fx:value="Экспоненциальное" />
+                                            <String fx:value="Логнормальное" />
+                                            <String fx:value="Вейбулла" />
+                                            <String fx:value="Стьюдента" />
+                                            <String fx:value="Лапласа" />
+                                            <String fx:value="Экстремальное (max)" />
+                                            <String fx:value="Экстремальное (min)" />
+                                        </FXCollections>
+                                    </items>
+                                </ComboBox>
+                                <ComboBox fx:id="typeDistCB2p4" layoutX="14.0" layoutY="326.0" prefHeight="26.0" prefWidth="186.0" promptText="Тип распределения">
+                                    <items>
+                                        <FXCollections fx:factory="observableArrayList">
+                                            <String fx:value="Нормальное" />
+                                            <String fx:value="Равномерное" />
+                                            <String fx:value="Экспоненциальное" />
+                                            <String fx:value="Логнормальное" />
+                                            <String fx:value="Вейбулла" />
+                                            <String fx:value="Стьюдента" />
+                                            <String fx:value="Лапласа" />
+                                            <String fx:value="Экстремальное (max)" />
+                                            <String fx:value="Экстремальное (min)" />
+                                        </FXCollections>
+                                    </items>
+                                </ComboBox>
+                                <TextField fx:id="sizeTF1p4" layoutX="145.0" layoutY="77.0" prefHeight="25.0" prefWidth="55.0" />
+                                <TextField fx:id="param1TF1p4" layoutX="160.0" layoutY="117.0" prefHeight="25.0" prefWidth="40.0" />
+                                <TextField fx:id="param2TF1p4" layoutX="160.0" layoutY="157.0" prefHeight="25.0" prefWidth="40.0" />
+                                <TextField fx:id="sizeTF2p4" layoutX="145.0" layoutY="366.0" prefHeight="25.0" prefWidth="55.0" />
+                                <TextField fx:id="param1TF2p4" layoutX="160.0" layoutY="406.0" prefHeight="25.0" prefWidth="40.0" />
+                                <TextField fx:id="param2TF2p4" layoutX="160.0" layoutY="446.0" prefHeight="25.0" prefWidth="40.0" />
+                                <Label layoutX="14.0" layoutY="81.0" prefHeight="17.0" prefWidth="86.0" text="Размер" />
+                                <Label layoutX="14.0" layoutY="121.0" prefHeight="17.0" prefWidth="99.0" text="Параметр 1" />
+                                <Label layoutX="14.0" layoutY="161.0" prefHeight="17.0" prefWidth="98.0" text="Параметр 2" />
+                                <Label layoutX="14.0" layoutY="370.0" prefHeight="17.0" prefWidth="79.0" text="Размер" />
+                                <Label layoutX="14.0" layoutY="410.0" prefHeight="17.0" prefWidth="100.0" text="Параметр 1" />
+                                <Label layoutX="14.0" layoutY="450.0" prefHeight="17.0" prefWidth="100.0" text="Параметр 2" />
+                                <TextField fx:id="countInOneTestTF" layoutX="452.0" layoutY="37.0" prefHeight="25.0" prefWidth="64.0" />
+                                <Label layoutX="231.0" layoutY="41.0" prefHeight="18.0" prefWidth="220.0" text="Кол-во эксп-ов на одном круге" />
+                                <Button fx:id="testButton" layoutX="653.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#testBtnClicked" prefHeight="25.0" prefWidth="147.0" text="Применить" />
+                                <LineChart fx:id="probabilityLineChart1" layoutX="211.0" layoutY="234.0" prefHeight="462.0" prefWidth="786.0">
+                                    <xAxis>
+                                        <NumberAxis label="Размер" side="BOTTOM" />
+                                    </xAxis>
+                                    <yAxis>
+                                        <NumberAxis label="Вероятность" side="LEFT" />
+                                    </yAxis>
+                                </LineChart>
+                                <ComboBox fx:id="criterionCBp4" layoutX="374.0" layoutY="80.0" prefHeight="25.0" prefWidth="221.0" promptText="Выберите критерий">
+                                    <items>
+                                        <FXCollections fx:factory="observableArrayList">
+                                            <String fx:value="Знаковых рангов Вилкоксона" />
+                                            <String fx:value="Фридмана" />
+                                            <String fx:value="Суммы рангов Вилкоксона" />
+                                            <String fx:value="Ван-дер-Вардена" />
+                                            <String fx:value="Медианный" />
+                                            <String fx:value="Крускала-Уоллиса" />
+                                        </FXCollections>
+                                    </items>
+                                </ComboBox>
+                                <SVGPath fx:id="meanSvg" layoutX="14.0" layoutY="200.0" />
+                                <SVGPath fx:id="medianSvg" layoutX="14.0" layoutY="230.0" />
+                                <SVGPath fx:id="modaSvg" layoutX="14.0" layoutY="260.0" />
+                                <Label layoutX="50.0" layoutY="200.0" text="Н0: Средние равны" />
+                                <Label layoutX="50.0" layoutY="230.0" text="Н0: Медианы равны" />
+                                <Label layoutX="50.0" layoutY="260.0" text="Н0: Моды равны" />
+                                <Label layoutX="526.0" layoutY="42.0" prefHeight="16.0" prefWidth="161.0" text="Шаг размера выборок" />
+                                <Label layoutX="791.0" layoutY="42.0" prefHeight="16.0" prefWidth="113.0" text="Кол-во кругов" />
+                                <RadioButton fx:id="err1RB" layoutX="374.0" layoutY="169.0" mnemonicParsing="false" text="Вероятность ошибки 1-го рода" />
+                                <RadioButton fx:id="err2RB" layoutX="374.0" layoutY="199.0" mnemonicParsing="false" text="Вероятность ошибки 2-го рода" />
+                                <RadioButton fx:id="meanRB" layoutX="710.0" layoutY="152.0" mnemonicParsing="false" text="Среднее" />
+                                <RadioButton fx:id="medianRB" layoutX="710.0" layoutY="180.0" mnemonicParsing="false" text="Медиана" />
+                                <RadioButton fx:id="modaRB" layoutX="710.0" layoutY="208.0" mnemonicParsing="false" text="Мода" />
+                                <TextField fx:id="stepTF" layoutX="686.0" layoutY="37.0" prefHeight="25.0" prefWidth="64.0" />
+                                <TextField fx:id="countTestsTF" layoutX="896.0" layoutY="37.0" prefHeight="25.0" prefWidth="64.0" />
+                                <Button fx:id="truncateBtn" layoutX="14.0" layoutY="616.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="184.0" text="Очистить результаты" onMouseClicked="#truncateBtnClicked" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>
