@@ -4,6 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.*;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -14,49 +17,39 @@ import java.sql.Statement;
 
 
 public class Controller {
-    @FXML
-    private Button sqrCreate;
-    @FXML
-    private Button cubCreate;
-
     private static Connection con;
     private static Statement stmt;
     private static ResultSet rs;
-
+    //обьявление обьектов формы
     @FXML
-    NumberAxis xAxis;
-
+    private AnchorPane main_frame;
     @FXML
-    NumberAxis yAxis;
-
+    private TextField fieldFuncPane1;
+    @FXML
+    private TextField fieldCountPane1;
     @FXML
     private LineChart<Number, Number> myChart;
-
-    @FXML
-    private void click() {
-        buildChart();
-    }
+//Методы событий на форме
     @FXML
     private void clickDb(){
-        connectDb("jdbc:mysql://31.31.196.177:3306","u0450775_Boris11","nsrmgrb1173211");
+
+        //connectDb("jdbc:mysql://31.31.196.177:3306/web_windigo_db","u0450775_Boris11","nsrmgrb1173211");
     }
-/*Params.Strings = (
-      'Database=u0450775_club'
-      'User_Name=u0450775_Boris11'
-      'Password=nsrmgrb1173211'
-      'Server=31.31.196.177'
-      'DriverID=MySQL')
+    @FXML
+    private void clickStartPane1()
+    {
+        ArrayCreator my_array = new ArrayCreator(Integer.parseInt(fieldCountPane1.getText()));
 
-private static final String url = "jdbc:mysql://localhost:3306/test";
-    private static final String user = "root";
-    private static final String password = "root";
- */
+        fieldFuncPane1.getText();
+
+    }
 
 
+// Методы которые вызываются внутри событий
     void connectDb (String url, String user, String password)
     {
 
-        String query = "select count(*) from users";
+        String query = "select distinct id from tb_users";
 
         try {
             // opening database connection to MySQL server
