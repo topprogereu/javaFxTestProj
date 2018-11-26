@@ -1,15 +1,18 @@
 package sample;
+import java.util.Arrays;
+import java.util.Random;
 
 public class ArrayCreator {
-    private int number_elem;
+    private int length_arr;
     private int [] arrX;
     private int [] arrFunc;
 
-     ArrayCreator(int n)
+    ArrayCreator(int len)
     {
-        number_elem = n;
+        length_arr = len;
+        arrX = new int [length_arr];
+        arrFunc = new int [length_arr];
     }
-
     public int[] getArrX() {
         return arrX;
     }
@@ -18,4 +21,20 @@ public class ArrayCreator {
         return arrFunc;
     }
 
+    public int getLength_arr() {
+        return length_arr;
+    }
+
+    public void generatingArray()
+    {
+        for(int j=0; j <length_arr; j ++) {
+            arrX[j] = new Random().nextInt(20);
+            arrFunc[j] = 4*arrX[j];
+        }
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.toString(arrX)+"\n"+Arrays.toString(arrFunc);
+    }
 }

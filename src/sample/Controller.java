@@ -39,15 +39,23 @@ public class Controller {
     private void clickStartPane1()
     {
         ArrayCreator my_array = new ArrayCreator(Integer.parseInt(fieldCountPane1.getText()));
+        my_array.generatingArray();
 
-        fieldFuncPane1.getText();
+        XYChart.Series<Number,Number> seriesApril= new <Integer,Integer>XYChart.Series();
+        seriesApril.setName("SQR");
+        System.out.print(my_array.toString());
+        for (int i = 0; i< my_array.getLength_arr(); i++) {
+            seriesApril.getData().add(new XYChart.Data(i,i*i));
+        }
+        myChart.getData().add(seriesApril);
 
+        //https://netbeans.org/kb/docs/web/mysql-webapp_ru.html#planStructure
+        //fieldFuncPane1.getText();
     }
 
 
 // Методы которые вызываются внутри событий
-    void connectDb (String url, String user, String password)
-    {
+    void connectDb (String url, String user, String password) {
 
         String query = "select distinct id from tb_users";
 
@@ -70,34 +78,16 @@ public class Controller {
             sqlEx.printStackTrace();
         } finally {
             //close connection ,stmt and resultset here
-            try { con.close(); } catch(SQLException se) { /*can't do anything */ }
-            try { stmt.close(); } catch(SQLException se) { /*can't do anything */ }
-            try { rs.close(); } catch(SQLException se) { /*can't do anything */ }
+            try {
+                con.close();
+            } catch (SQLException se) { /*can't do anything */ }
+            try {
+                stmt.close();
+            } catch (SQLException se) { /*can't do anything */ }
+            try {
+                rs.close();
+            } catch (SQLException se) { /*can't do anything */ }
         }
     }
-
-
-
-    void buildChart()
-    {
-        Integer [] arr = new Integer[10];
-        Integer [] arrFunc = new Integer [10];
-        for(int i = 0; i<arr.length;i++)
-        {
-            arr[i]=i;
-            arrFunc[i] = i * i ;
-        }
-
-        XYChart.Series<Number,Number> seriesApril= new <Integer,Integer>XYChart.Series();
-        seriesApril.setName("SQR");
-
-        for (int i = 0; i< arr.length; i++)
-        {
-            seriesApril.getData().add(new XYChart.Data(i, arrFunc[i]));
-        }
-        myChart.getData().add(seriesApril);
-    }
-
-
 
 }
