@@ -12,7 +12,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("javafx/application/sample/keks.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("keks.fxml"));
         primaryStage.setTitle("Math helper v1.0");
         primaryStage.setScene(new Scene(root, root.getBoundsInParent().getWidth(), root.getBoundsInParent().getHeight()));
         primaryStage.show();

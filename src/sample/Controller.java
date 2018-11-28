@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.*;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
@@ -29,6 +30,12 @@ public class Controller {
     private TextField fieldCountPane1;
     @FXML
     private LineChart<Number, Number> myChart;
+    @FXML
+    private TextField fieldDownloadWay;
+    @FXML
+    private Button downloadButtClick;
+    @FXML
+    private TextArea outputArea;
 //Методы событий на форме
     @FXML
     private void clickDb(){
@@ -50,7 +57,12 @@ public class Controller {
         myChart.getData().add(seriesApril);
 
         //https://netbeans.org/kb/docs/web/mysql-webapp_ru.html#planStructure
-        //fieldFuncPane1.getText();
+        System.out.println(fieldFuncPane1.getText());
+    }
+    @FXML
+            private void clickDownloadFile()
+    {
+        outputArea.appendText("WTF THIS SHIT");
     }
 
 
