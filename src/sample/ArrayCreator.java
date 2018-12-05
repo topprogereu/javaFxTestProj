@@ -10,6 +10,9 @@ public class ArrayCreator {
     ArrayCreator(int len)
     {
         length_arr = len;
+        if(len<0) {
+            throw new MyException();
+        }
         arrX = new int [length_arr];
         arrFunc = new int [length_arr];
     }
