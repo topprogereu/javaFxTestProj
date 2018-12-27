@@ -8,6 +8,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -40,6 +44,7 @@ public class Controller {
     @FXML
     private void clickDb(){
 
+
         //connectDb("jdbc:mysql://31.31.196.177:3306/web_windigo_db","u0450775_Boris11","nsrmgrb1173211");
     }
     @FXML
@@ -56,17 +61,40 @@ public class Controller {
         }
         myChart.getData().add(seriesApril);
 
-        //https://netbeans.org/kb/docs/web/mysql-webapp_ru.html#planStructure
+
         System.out.println(fieldFuncPane1.getText());
     }
     @FXML
-            private void clickDownloadFile()
+    private void clickDownloadFile()
+    {   try {
+        outputArea.appendText(printFromFile());
+    }
+
+    catch (IOException e)
     {
-        outputArea.appendText("WTF THIS SHIT");
+        outputArea.appendText("You input bad file, Man!");
+    }
+    catch(Exception e)
+    {
+        ;
+    }
+
     }
 
 
 // Методы которые вызываются внутри событий
+    String printFromFile() throws IOException
+    {
+        BufferedReader in = new BufferedReader(new FileReader(fieldDownloadWay.getText()));
+        String str1;
+        StringBuilder sb1 = new StringBuilder();
+        while ((str1 = in.readLine())!= null)
+        {
+            sb1.append(str1);
+        }
+        return sb1.toString();
+    }
+
     void connectDb (String url, String user, String password) {
 
         String query = "select distinct id from tb_users";
@@ -101,5 +129,7 @@ public class Controller {
             } catch (SQLException se) { /*can't do anything */ }
         }
     }
+
+
 
 }
